@@ -1,0 +1,717 @@
+/* ============================================================
+   Undangan Pernikahan — Surya & Fransiska
+   Palet: maroon tua, sogan, krem/gading, aksen emas
+   ============================================================ */
+
+:root {
+  --maroon: #4a1520;
+  --maroon-deep: #380f18;
+  --sogan: #6b4423;
+  --cream: #fdf6e3;
+  --ivory: #f7ecd7;
+  --gold: #b49158;
+  --gold-dark: #8c6b35;
+  --ink: #3d2b1a;
+  --ink-soft: #5a4632;
+  --card: #fffdf6;
+  --shadow: 0 10px 30px rgba(74, 21, 32, 0.12);
+
+  --font-display: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
+  --font-body: "Segoe UI", "Helvetica Neue", "Trebuchet MS", Arial, sans-serif;
+
+  --speed: 320ms;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background-color: var(--cream);
+  position: relative;
+}
+
+/* Latar batik full-bleed halus di belakang kolom undangan */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: url("../assets/patterns/batik-parang.svg") repeat;
+  background-size: 120px 120px;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+/* Kolom undangan, mobile-first, dibatasi di desktop */
+.column {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 2.25rem 1.25rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Fokus & tipografi dasar ---------- */
+:focus-visible {
+  outline: 3px solid var(--gold-dark);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+h1, h2, h3, h4, blockquote cite {
+  font-family: var(--font-display);
+  color: var(--maroon);
+  line-height: 1.25;
+}
+
+.section__title {
+  font-size: 1.7rem;
+  letter-spacing: 0.03em;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.lead {
+  margin-bottom: 1.25rem;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+/* ---------- Tombol ---------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.7rem 1.6rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform var(--speed) ease, box-shadow var(--speed) ease, background-color var(--speed) ease, color var(--speed) ease;
+}
+
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.btn:active { transform: translateY(0); }
+
+.btn--gold {
+  background-color: var(--gold);
+  color: var(--maroon-deep);
+  border-color: var(--gold-dark);
+}
+
+.btn--outline {
+  background-color: transparent;
+  color: var(--sogan);
+  border-color: var(--gold-dark);
+}
+
+.btn--outline:hover { background-color: rgba(180, 145, 88, 0.15); }
+
+/* ============================================================
+   1. Cover / layar pembuka
+   ============================================================ */
+.cover {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+  background-color: var(--maroon);
+  color: var(--cream);
+  transition: opacity 480ms ease, visibility 480ms ease;
+}
+
+.cover.is-open {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cover__batik {
+  position: absolute;
+  inset: 0;
+  background: url("../assets/patterns/batik-kawung.svg") repeat;
+  background-size: 100px 100px;
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+.cover__inner {
+  position: relative;
+  max-width: 520px;
+  border: 1px solid rgba(180, 145, 88, 0.55);
+  outline: 1px solid rgba(180, 145, 88, 0.25);
+  outline-offset: 6px;
+  padding: 3rem 1.5rem;
+}
+
+.cover__eyebrow {
+  font-family: var(--font-display);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+}
+
+.cover__names {
+  font-size: clamp(2.3rem, 9vw, 3.4rem);
+  color: var(--cream);
+  margin-bottom: 0.75rem;
+}
+
+.cover__names .amp {
+  color: var(--gold);
+  font-size: 0.6em;
+  padding: 0 0.2em;
+}
+
+.cover__date {
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  color: var(--ivory);
+  margin-bottom: 1.5rem;
+}
+
+.cover__hint {
+  font-size: 0.9rem;
+  color: rgba(253, 246, 227, 0.85);
+  margin-bottom: 2rem;
+}
+
+/* Gembok gulir saat cover terbuka */
+body.cover-open { overflow: hidden; }
+
+/* ---------- Header kecil ---------- */
+.site-header {
+  text-align: center;
+  padding: 0.9rem 1rem 0;
+}
+
+.site-header__brand {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--gold-dark);
+  letter-spacing: 0.12em;
+}
+
+/* ============================================================
+   2. Hero
+   ============================================================ */
+.hero { text-align: center; }
+
+.hero__photo {
+  position: relative;
+  margin: 1.5rem auto 1.75rem;
+  width: min(260px, 72vw);
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(160deg, rgba(180, 145, 88, 0.35), rgba(74, 21, 32, 0.55)),
+    url("../assets/patterns/batik-sidomukti.svg") repeat,
+    var(--ivory);
+  background-size: cover, 200px 200px, auto;
+  border: 1px solid var(--gold);
+  outline: 1px solid rgba(180, 145, 88, 0.4);
+  outline-offset: 6px;
+  box-shadow: var(--shadow);
+}
+
+.hero__monogram {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 10vw, 3.2rem);
+  color: var(--cream);
+  text-shadow: 0 2px 10px rgba(56, 15, 24, 0.55);
+  letter-spacing: 0.08em;
+}
+
+.hero__heart {
+  color: var(--gold);
+  font-size: 0.55em;
+  padding: 0 0.25em;
+  vertical-align: 0.12em;
+}
+
+.hero__names {
+  font-size: 1.65rem;
+  margin-bottom: 0.4rem;
+}
+
+.hero__date {
+  color: var(--ink-soft);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.75rem;
+}
+
+.divider {
+  height: 42px;
+  max-width: 360px;
+  margin: 0 auto 1rem;
+  background: url("../assets/patterns/batik-mega-mendung-divider.svg") no-repeat center / contain;
+}
+
+.scroll-cue {
+  display: inline-block;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  text-decoration: none;
+  animation: bob 2.4s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+/* ---------- Seksi umum ---------- */
+.section { padding: 1.5rem 0; }
+
+.section--tinted {
+  background-color: var(--ivory);
+  border-top: 1px solid rgba(180, 145, 88, 0.3);
+  border-bottom: 1px solid rgba(180, 145, 88, 0.3);
+}
+
+/* ============================================================
+   3. Countdown
+   ============================================================ */
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+
+.countdown__box {
+  background: var(--card);
+  border: 1px solid var(--gold);
+  border-radius: 10px;
+  padding: 0.85rem 0.3rem 0.7rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.countdown__num {
+  display: block;
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  font-size: 1.7rem;
+  line-height: 1.1;
+  color: var(--maroon);
+  min-width: 2ch;
+}
+
+.countdown__label {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+
+/* ============================================================
+   4. Mempelai
+   ============================================================ */
+.quote {
+  margin: 0 0 1.75rem;
+  padding: 1.1rem 1.25rem;
+  border-left: 3px solid var(--gold);
+  background: var(--card);
+  border-radius: 0 10px 10px 0;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.quote cite {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  font-style: normal;
+  color: var(--gold-dark);
+  text-align: right;
+}
+
+.couple-card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid rgba(180, 145, 88, 0.45);
+  border-radius: 12px;
+  padding: 1.5rem 1.25rem;
+  margin-bottom: 1.25rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.couple-card::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(180, 145, 88, 0.35);
+  border-radius: 8px;
+  background: url("../assets/patterns/batik-truntum.svg") repeat;
+  background-size: 80px 80px;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.couple-card > * { position: relative; }
+
+.couple-card__badge {
+  width: 52px; height: 52px;
+  margin: 0 auto 0.9rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--cream);
+  background: radial-gradient(circle at 30% 30%, var(--sogan), var(--maroon));
+  border: 2px solid var(--gold);
+}
+
+.couple-card__name { font-size: 1.45rem; margin-bottom: 0.15rem; }
+
+.couple-card__role {
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 0.6rem;
+}
+
+.couple-card__parents { color: var(--ink-soft); font-size: 0.95rem; }
+
+/* ============================================================
+   5. Acara
+   ============================================================ */
+.event-card {
+  background: var(--card);
+  border: 1px solid rgba(180, 145, 88, 0.45);
+  border-radius: 12px;
+  padding: 1.5rem 1.25rem;
+  margin-bottom: 1.25rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.event-card__title {
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(180, 145, 88, 0.35);
+}
+
+.event-card__row {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.event-card__icon { margin-right: 0.4rem; }
+
+.event-card .btn { margin-top: 0.9rem; }
+
+/* ============================================================
+   6. Galeri
+   ============================================================ */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.7rem;
+}
+
+.gallery__tile {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--gold);
+  box-shadow: var(--shadow);
+}
+
+/* ============================================================
+   7. Ucapan &amp; RSVP
+   ============================================================ */
+.rsvp-form {
+  background: var(--card);
+  border: 1px solid rgba(180, 145, 88, 0.45);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+}
+
+.field { margin-bottom: 1rem; }
+
+.field label,
+.field legend {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.35rem;
+  color: var(--sogan);
+}
+
+.field input[type="text"],
+.field textarea {
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  background: var(--cream);
+  border: 1px solid rgba(107, 68, 35, 0.35);
+  border-radius: 8px;
+  padding: 0.65rem 0.8rem;
+  resize: vertical;
+}
+
+.field input[type="text"]:focus,
+.field textarea:focus {
+  border-color: var(--gold-dark);
+  outline-offset: 1px;
+}
+
+.field--radio {
+  border: 0;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 400 !important;
+  margin-bottom: 0.4rem;
+  cursor: pointer;
+}
+
+.radio input { accent-color: var(--maroon); width: 1.05rem; height: 1.05rem; }
+
+.field__error {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  color: #9c2b1f;
+  font-weight: 600;
+}
+
+.rsvp-form .btn { width: 100%; }
+
+.rsvp-list {
+  list-style: none;
+  margin-top: 1.25rem;
+}
+
+.rsvp-item {
+  background: var(--card);
+  border: 1px solid rgba(180, 145, 88, 0.35);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.7rem;
+}
+
+.rsvp-item__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.rsvp-item__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--maroon);
+}
+
+.rsvp-item__badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--gold-dark);
+  color: var(--gold-dark);
+  background: rgba(180, 145, 88, 0.12);
+}
+
+.badge--hadir { color: #2c5c3a; border-color: #2c5c3a; background: rgba(44, 92, 58, 0.1); }
+.badge--tidak-hadir { color: #8f2a1e; border-color: #8f2a1e; background: rgba(143, 42, 30, 0.1); }
+.badge--masih-ragu { color: #7a5a12; border-color: #7a5a12; background: rgba(122, 90, 18, 0.1); }
+
+.rsvp-item__msg { color: var(--ink-soft); font-size: 0.95rem; }
+
+.rsvp-item__time {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  color: var(--gold-dark);
+}
+
+/* ============================================================
+   8. Amplop digital
+   ============================================================ */
+.bank-card {
+  background: var(--card);
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.bank-card__bank {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--maroon);
+  margin-bottom: 0.35rem;
+}
+
+.bank-card__number {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  font-size: 1.9rem;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+
+.bank-card__name {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  margin-bottom: 1.1rem;
+}
+
+/* ============================================================
+   9. Penutup &amp; footer
+   ============================================================ */
+.closing {
+  background:
+    linear-gradient(rgba(56, 15, 24, 0.88), rgba(56, 15, 24, 0.88)),
+    url("../assets/patterns/batik-parang.svg") repeat;
+  background-size: auto, 120px 120px;
+  color: var(--cream);
+  text-align: center;
+  padding: 0.75rem 0 1.5rem;
+}
+
+.closing .section__title { color: var(--gold); }
+
+.closing .lead { color: rgba(253, 246, 227, 0.92); }
+
+.closing__names {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  margin-top: 1rem;
+}
+
+.closing__names strong {
+  display: inline-block;
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-top: 0.35rem;
+}
+
+.closing__hashtag {
+  margin-top: 1.25rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  color: var(--ivory);
+}
+
+.site-footer {
+  background: var(--maroon-deep);
+  color: rgba(253, 246, 227, 0.75);
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 1rem 1.25rem;
+}
+
+/* ---------- Tombol musik mengambang ---------- */
+.music-toggle {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 60;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--cream);
+  background: var(--maroon);
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: background-color var(--speed) ease;
+}
+
+.music-toggle:hover { background-color: var(--sogan); }
+
+.music-toggle[hidden] { display: none; }
+
+.music-toggle.is-muted::after {
+  content: "";
+  position: absolute;
+  width: 26px;
+  height: 2px;
+  background: var(--gold);
+  transform: rotate(-45deg);
+}
+
+/* ============================================================
+   Scroll reveal &amp; reduced motion
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 380ms ease-out, transform 380ms ease-out;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .scroll-cue { animation: none; }
+  .btn { transition: none; }
+  .cover { transition: none; }
+}
+
+/* ---------- Desktop: kolom tetap di tengah ---------- */
+@media (min-width: 768px) {
+  body::before { opacity: 0.12; }
+  .column { padding: 2.75rem 2rem; }
+  .section { padding: 2.25rem 0; }
+}

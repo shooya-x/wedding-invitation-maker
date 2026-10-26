@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img">
+  <defs>
+    <radialGradient id="g3-vig" cx="50%" cy="30%" r="85%">
+      <stop offset="0%" stop-color="#6b4423"/>
+      <stop offset="65%" stop-color="#5e3b1e"/>
+      <stop offset="100%" stop-color="#380f18"/>
+    </radialGradient>
+    <radialGradient id="g3-sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#b49158"/>
+      <stop offset="100%" stop-color="#8c6b35"/>
+    </radialGradient>
+    <!-- one scalloped mega-mendung cloud band, wide -->
+    <path id="g3-band" d="M-40,0 Q-10,-36 20,0 Q50,-36 80,0 Q110,-36 140,0 Q170,-36 200,0 Q230,-36 260,0 Q290,-36 320,0 Q350,-36 380,0 Q410,-36 440,0 Q470,-36 500,0 Q530,-36 560,0 Q590,-36 620,0 L620,140 L-40,140 Z"/>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#g3-vig)"/>
+
+  <!-- moon disc with glow -->
+  <circle cx="300" cy="170" r="88" fill="#b49158" fill-opacity="0.12"/>
+  <circle cx="300" cy="170" r="62" fill="url(#g3-sun)" fill-opacity="0.9"/>
+  <circle cx="300" cy="170" r="76" fill="none" stroke="#b49158" stroke-width="1"/>
+  <circle cx="300" cy="170" r="86" fill="none" stroke="#b49158" stroke-width="0.75" stroke-opacity="0.5" stroke-dasharray="2 8"/>
+  <circle cx="282" cy="152" r="9" fill="#fdf6e3" fill-opacity="0.18"/>
+
+  <!-- layered mega-mendung horizon -->
+  <g>
+    <use href="#g3-band" transform="translate(-10,300)" fill="#b49158" fill-opacity="0.28"/>
+    <use href="#g3-band" transform="translate(20,352) scale(1.02,1.15)" fill="#b49158" fill-opacity="0.42"/>
+    <use href="#g3-band" transform="translate(-30,406)" fill="#8c6b35" fill-opacity="0.6"/>
+    <use href="#g3-band" transform="translate(10,462) scale(1.05,1.2)" fill="#4a1520" fill-opacity="0.85"/>
+    <use href="#g3-band" transform="translate(-20,520) scale(1.02,1.1)" fill="#380f18" fill-opacity="0.95"/>
+  </g>
+  <!-- cloud edge strokes -->
+  <g fill="none" stroke="#fdf6e3" stroke-opacity="0.35" stroke-width="1.25">
+    <path d="M-10,300 Q20,264 50,300 Q80,336 110,300"/>
+    <path d="M110,300 Q140,264 170,300 Q200,336 230,300"/>
+    <path d="M230,300 Q260,264 290,300 Q320,336 350,300"/>
+    <path d="M350,300 Q380,264 410,300 Q440,336 470,300"/>
+    <path d="M470,300 Q500,264 530,300 Q560,336 590,300"/>
+  </g>
+
+  <!-- gold hairline frame -->
+  <rect x="12" y="12" width="576" height="576" fill="none" stroke="#b49158" stroke-width="1.5"/>
+  <rect x="22" y="22" width="556" height="556" fill="none" stroke="#8c6b35" stroke-width="0.75" stroke-opacity="0.7"/>
+</svg>

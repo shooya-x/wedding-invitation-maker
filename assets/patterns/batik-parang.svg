@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <defs>
+    <pattern id="parang-pattern" width="60" height="60" patternUnits="userSpaceOnUse">
+      <!-- Parang motif: diagonal parallel lines with characteristic "knife" shape -->
+      <path d="M0,60 L60,0 M-30,30 L30,-30 M30,90 L90,30 M60,120 L120,60" 
+            stroke="#B49158" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M0,60 L60,0 M-30,30 L30,-30 M30,90 L90,30 M60,120 L120,60" 
+            stroke="#B49158" stroke-width="1" fill="none" stroke-linecap="round" stroke-dasharray="8,4"/>
+      <!-- Parang "teeth" detail -->
+      <g stroke="#B49158" stroke-width="1.5" fill="none">
+        <path d="M15,45 L20,40 L25,45"/>
+        <path d="M45,15 L50,10 L55,15"/>
+        <path d="M75,75 L80,70 L85,75"/>
+        <path d="M105,45 L110,40 L115,45"/>
+      </g>
+    </pattern>
+  </defs>
+  <rect width="120" height="120" fill="#FDF6E3"/>
+  <rect width="120" height="120" fill="url(#parang-pattern)"/>
+</svg>

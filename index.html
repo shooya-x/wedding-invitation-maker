@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Isi formulir, lihat pratinjau, lalu unduh undangan pernikahan dalam satu berkas HTML.">
+  <title>Pembuat Undangan Pernikahan</title>
+  <link rel="stylesheet" href="builder.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1 class="topbar__title">Pembuat Undangan</h1>
+    <p class="topbar__lead">Isi data mempelai dan acara, lihat pratinjaunya, lalu unduh sebagai satu berkas HTML yang siap dibagikan.</p>
+  </header>
+
+  <main class="layout">
+    <!-- ============ Kolom formulir ============ -->
+    <section class="form-col" aria-labelledby="form-title">
+      <h2 class="col-title" id="form-title">Isi Data Undangan</h2>
+
+      <form id="builder-form" novalidate>
+        <fieldset class="group">
+          <legend>Mempelai Pria</legend>
+          <div class="field">
+            <label for="pria-panggilan">Nama Panggilan <span aria-hidden="true">*</span></label>
+            <input type="text" id="pria-panggilan" name="pria-panggilan" required autocomplete="off" placeholder="mis. Surya">
+          </div>
+          <div class="field">
+            <label for="pria-lengkap">Nama Lengkap <span aria-hidden="true">*</span></label>
+            <input type="text" id="pria-lengkap" name="pria-lengkap" required autocomplete="off" placeholder="mis. Surya Septa Pratama">
+          </div>
+          <div class="field">
+            <label for="pria-ayah">Nama Ayah <span aria-hidden="true">*</span></label>
+            <input type="text" id="pria-ayah" name="pria-ayah" required autocomplete="off" placeholder="mis. Aja Sukarja">
+          </div>
+          <div class="field">
+            <label for="pria-ibu">Nama Ibu <span aria-hidden="true">*</span></label>
+            <input type="text" id="pria-ibu" name="pria-ibu" required autocomplete="off" placeholder="mis. Sugiyarti">
+          </div>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend>Mempelai Wanita</legend>
+          <div class="field">
+            <label for="wanita-panggilan">Nama Panggilan <span aria-hidden="true">*</span></label>
+            <input type="text" id="wanita-panggilan" name="wanita-panggilan" required autocomplete="off" placeholder="mis. Fransiska">
+          </div>
+          <div class="field">
+            <label for="wanita-lengkap">Nama Lengkap <span aria-hidden="true">*</span></label>
+            <input type="text" id="wanita-lengkap" name="wanita-lengkap" required autocomplete="off" placeholder="mis. Fransiska Wijaya">
+          </div>
+          <div class="field">
+            <label for="wanita-ayah">Nama Ayah <span aria-hidden="true">*</span></label>
+            <input type="text" id="wanita-ayah" name="wanita-ayah" required autocomplete="off" placeholder="mis. Wahyu">
+          </div>
+          <div class="field">
+            <label for="wanita-ibu">Nama Ibu <span aria-hidden="true">*</span></label>
+            <input type="text" id="wanita-ibu" name="wanita-ibu" required autocomplete="off" placeholder="mis. Tati Widiyawati">
+          </div>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend>Acara</legend>
+          <div class="field">
+            <label for="tanggal">Tanggal Pernikahan <span aria-hidden="true">*</span></label>
+            <input type="date" id="tanggal" name="tanggal" required>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="akad-mulai">Akad Mulai <span aria-hidden="true">*</span></label>
+              <input type="time" id="akad-mulai" name="akad-mulai" required>
+            </div>
+            <div class="field">
+              <label for="akad-selesai">Akad Selesai <span aria-hidden="true">*</span></label>
+              <input type="time" id="akad-selesai" name="akad-selesai" required>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="resepsi-mulai">Resepsi Mulai <span aria-hidden="true">*</span></label>
+              <input type="time" id="resepsi-mulai" name="resepsi-mulai" required>
+            </div>
+            <div class="field">
+              <label for="resepsi-selesai">Resepsi Selesai <span aria-hidden="true">*</span></label>
+              <input type="time" id="resepsi-selesai" name="resepsi-selesai" required>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend>Lokasi</legend>
+          <div class="field">
+            <label for="lokasi">Nama Lokasi <span aria-hidden="true">*</span></label>
+            <input type="text" id="lokasi" name="lokasi" required autocomplete="off" placeholder="mis. Kediaman Mempelai Wanita">
+          </div>
+          <div class="field">
+            <label for="maps">Tautan Google Maps <span aria-hidden="true">*</span></label>
+            <input type="url" id="maps" name="maps" required autocomplete="off" placeholder="https://maps.app.goo.gl/...">
+          </div>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend>Hadiah</legend>
+          <div class="field">
+            <label for="bank">Nama Bank</label>
+            <input type="text" id="bank" name="bank" autocomplete="off" placeholder="mis. BCA">
+          </div>
+          <div class="field">
+            <label for="rekening">Nomor Rekening <span aria-hidden="true">*</span></label>
+            <input type="text" id="rekening" name="rekening" required inputmode="numeric" autocomplete="off" placeholder="mis. 1234567890">
+          </div>
+          <div class="field">
+            <label for="atasnama">Atas Nama <span aria-hidden="true">*</span></label>
+            <input type="text" id="atasnama" name="atasnama" required autocomplete="off" placeholder="mis. Fransiska Wijaya">
+          </div>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend>Lainnya</legend>
+          <div class="field">
+            <label for="hashtag">Hashtag</label>
+            <input type="text" id="hashtag" name="hashtag" autocomplete="off" placeholder="Kosongkan untuk otomatis, mis. #SuryaFransiska">
+          </div>
+          <div class="field">
+            <label for="pembuka">Kalimat Pembuka</label>
+            <input type="text" id="pembuka" name="pembuka" autocomplete="off" placeholder="mis. Bismillahirrahmanirrahim">
+          </div>
+          <div class="field">
+            <label for="kutipan">Kutipan</label>
+            <textarea id="kutipan" name="kutipan" rows="4" placeholder="Tulis kutipan atau ayat yang ingin ditampilkan"></textarea>
+          </div>
+          <div class="field">
+            <label for="kutipan-sumber">Sumber Kutipan</label>
+            <input type="text" id="kutipan-sumber" name="kutipan-sumber" autocomplete="off" placeholder="mis. QS. Ar-Rum: 21">
+          </div>
+          <div class="field field--check">
+            <input type="checkbox" id="musik" name="musik" checked>
+            <label for="musik">Sertakan musik latar <span class="hint">(menambah &plusmn;5,5 MB)</span></label>
+          </div>
+        </fieldset>
+      </form>
+    </section>
+
+    <!-- ============ Kolom pratinjau ============ -->
+    <aside class="preview-col" aria-labelledby="preview-title">
+      <details id="preview-details" class="preview-fold" open>
+        <summary id="preview-title" class="col-title">Pratinjau Undangan</summary>
+        <div class="phone">
+          <iframe id="preview" title="Pratinjau undangan pernikahan" sandbox="allow-scripts"></iframe>
+        </div>
+      </details>
+    </aside>
+  </main>
+
+  <!-- ============ Bilah aksi & status ============ -->
+  <div class="actions" id="actions">
+    <p class="status" id="status" aria-live="polite"></p>
+    <div class="actions__buttons">
+      <button type="button" class="btn btn--outline" id="btn-preview">Perbarui Pratinjau</button>
+      <button type="button" class="btn btn--gold" id="btn-unduh">Unduh Undangan</button>
+      <button type="button" class="btn btn--ghost" id="btn-contoh">Kosongkan Formulir</button>
+    </div>
+  </div>
+
+  <script src="template.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>

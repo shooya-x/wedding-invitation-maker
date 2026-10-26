@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img">
+  <defs>
+    <radialGradient id="g1-vig" cx="50%" cy="42%" r="75%">
+      <stop offset="0%" stop-color="#4a1520"/>
+      <stop offset="70%" stop-color="#41121c"/>
+      <stop offset="100%" stop-color="#380f18"/>
+    </radialGradient>
+    <radialGradient id="g1-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fdf6e3" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#fdf6e3" stop-opacity="0"/>
+    </radialGradient>
+    <g id="g1-kawung">
+      <circle cx="0" cy="-34" r="34" fill="none" stroke="#b49158" stroke-width="1.5"/>
+      <circle cx="0" cy="34" r="34" fill="none" stroke="#b49158" stroke-width="1.5"/>
+      <circle cx="-34" cy="0" r="34" fill="none" stroke="#b49158" stroke-width="1.5"/>
+      <circle cx="34" cy="0" r="34" fill="none" stroke="#b49158" stroke-width="1.5"/>
+      <circle cx="0" cy="0" r="4" fill="#b49158"/>
+    </g>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#g1-vig)"/>
+  <rect width="600" height="600" fill="url(#g1-glow)"/>
+
+  <!-- faint kawung field in corners -->
+  <use href="#g1-kawung" transform="translate(70,70)" opacity="0.16"/>
+  <use href="#g1-kawung" transform="translate(530,70)" opacity="0.16"/>
+  <use href="#g1-kawung" transform="translate(70,530)" opacity="0.16"/>
+  <use href="#g1-kawung" transform="translate(530,530)" opacity="0.16"/>
+
+  <!-- gold hairline frame -->
+  <rect x="12" y="12" width="576" height="576" fill="none" stroke="#b49158" stroke-width="1.5"/>
+  <rect x="22" y="22" width="556" height="556" fill="none" stroke="#8c6b35" stroke-width="0.75" stroke-opacity="0.8"/>
+
+  <!-- kawung rosette medallion -->
+  <g>
+    <circle cx="300" cy="300" r="178" fill="none" stroke="#8c6b35" stroke-width="1" stroke-opacity="0.7"/>
+    <circle cx="300" cy="300" r="168" fill="none" stroke="#b49158" stroke-width="0.75" stroke-dasharray="3 6" stroke-opacity="0.7"/>
+    <!-- four kawung petals, large -->
+    <circle cx="300" cy="216" r="84" fill="none" stroke="#b49158" stroke-width="1.5" stroke-opacity="0.85"/>
+    <circle cx="300" cy="384" r="84" fill="none" stroke="#b49158" stroke-width="1.5" stroke-opacity="0.85"/>
+    <circle cx="216" cy="300" r="84" fill="none" stroke="#b49158" stroke-width="1.5" stroke-opacity="0.85"/>
+    <circle cx="384" cy="300" r="84" fill="none" stroke="#b49158" stroke-width="1.5" stroke-opacity="0.85"/>
+    <!-- inner echo petals -->
+    <circle cx="300" cy="232" r="58" fill="none" stroke="#b49158" stroke-width="0.75" stroke-opacity="0.4"/>
+    <circle cx="300" cy="368" r="58" fill="none" stroke="#b49158" stroke-width="0.75" stroke-opacity="0.4"/>
+    <circle cx="232" cy="300" r="58" fill="none" stroke="#b49158" stroke-width="0.75" stroke-opacity="0.4"/>
+    <circle cx="368" cy="300" r="58" fill="none" stroke="#b49158" stroke-width="0.75" stroke-opacity="0.4"/>
+    <circle cx="300" cy="300" r="118" fill="none" stroke="#8c6b35" stroke-width="0.75" stroke-opacity="0.5"/>
+    <circle cx="300" cy="300" r="7" fill="#b49158"/>
+  </g>
+
+  <!-- monogram -->
+  <g font-family="Palatino Linotype, Palatino, Georgia, serif" fill="#b49158" text-anchor="middle">
+    <text x="216" y="336" font-size="96">S</text>
+    <text x="300" y="322" font-size="54" fill="#b49158" font-style="italic">&amp;</text>
+    <text x="386" y="336" font-size="96">F</text>
+  </g>
+</svg>

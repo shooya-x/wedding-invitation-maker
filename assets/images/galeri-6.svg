@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img">
+  <defs>
+    <radialGradient id="g6-vig" cx="50%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="#4a1520"/>
+      <stop offset="100%" stop-color="#380f18"/>
+    </radialGradient>
+    <pattern id="g6-kw" width="48" height="48" patternUnits="userSpaceOnUse">
+      <circle cx="24" cy="24" r="16" fill="none" stroke="#b49158" stroke-width="1.5" stroke-opacity="0.7"/>
+      <circle cx="24" cy="24" r="11" fill="none" stroke="#b49158" stroke-width="0.75" stroke-opacity="0.45"/>
+      <circle cx="24" cy="24" r="3" fill="#b49158" fill-opacity="0.6"/>
+    </pattern>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#g6-vig)"/>
+
+  <!-- full-bleed kawung border band -->
+  <g>
+    <rect x="0" y="0" width="600" height="60" fill="url(#g6-kw)"/>
+    <rect x="0" y="540" width="600" height="60" fill="url(#g6-kw)"/>
+    <rect x="0" y="60" width="60" height="480" fill="url(#g6-kw)"/>
+    <rect x="540" y="60" width="60" height="480" fill="url(#g6-kw)"/>
+    <!-- corner rosettes over the band joins -->
+    <circle cx="30" cy="30" r="21" fill="#380f18" stroke="#b49158" stroke-width="2"/>
+    <circle cx="30" cy="30" r="13" fill="none" stroke="#b49158" stroke-width="1" stroke-opacity="0.6"/>
+    <circle cx="570" cy="30" r="21" fill="#380f18" stroke="#b49158" stroke-width="2"/>
+    <circle cx="570" cy="30" r="13" fill="none" stroke="#b49158" stroke-width="1" stroke-opacity="0.6"/>
+    <circle cx="30" cy="570" r="21" fill="#380f18" stroke="#b49158" stroke-width="2"/>
+    <circle cx="30" cy="570" r="13" fill="none" stroke="#b49158" stroke-width="1" stroke-opacity="0.6"/>
+    <circle cx="570" cy="570" r="21" fill="#380f18" stroke="#b49158" stroke-width="2"/>
+    <circle cx="570" cy="570" r="13" fill="none" stroke="#b49158" stroke-width="1" stroke-opacity="0.6"/>
+  </g>
+
+  <!-- inner parang ribbon edge on the frame -->
+  <rect x="66" y="66" width="468" height="468" fill="none" stroke="#b49158" stroke-width="1.5"/>
+  <rect x="74" y="74" width="452" height="452" fill="none" stroke="#8c6b35" stroke-width="0.75" stroke-dasharray="6 4" stroke-opacity="0.8"/>
+  <!-- tiny parang teeth marks at the inner frame midpoints -->
+  <g fill="none" stroke="#b49158" stroke-width="1.25" stroke-opacity="0.8">
+    <path d="M288,66 L300,78 L312,66"/>
+    <path d="M288,534 L300,522 L312,534"/>
+    <path d="M66,288 L78,300 L66,312"/>
+    <path d="M534,288 L522,300 L534,312"/>
+  </g>
+
+  <!-- empty gold quatrefoil plate -->
+  <g>
+    <circle cx="300" cy="222" r="64" fill="none" stroke="#b49158" stroke-width="2.5"/>
+    <circle cx="300" cy="378" r="64" fill="none" stroke="#b49158" stroke-width="2.5"/>
+    <circle cx="222" cy="300" r="64" fill="none" stroke="#b49158" stroke-width="2.5"/>
+    <circle cx="378" cy="300" r="64" fill="none" stroke="#b49158" stroke-width="2.5"/>
+    <circle cx="300" cy="228" r="54" fill="none" stroke="#8c6b35" stroke-width="0.75" stroke-opacity="0.7"/>
+    <circle cx="300" cy="372" r="54" fill="none" stroke="#8c6b35" stroke-width="0.75" stroke-opacity="0.7"/>
+    <circle cx="228" cy="300" r="54" fill="none" stroke="#8c6b35" stroke-width="0.75" stroke-opacity="0.7"/>
+    <circle cx="372" cy="300" r="54" fill="none" stroke="#8c6b35" stroke-width="0.75" stroke-opacity="0.7"/>
+    <circle cx="300" cy="300" r="100" fill="#fdf6e3" fill-opacity="0.04"/>
+    <circle cx="300" cy="300" r="4" fill="#b49158" fill-opacity="0.6"/>
+  </g>
+</svg>

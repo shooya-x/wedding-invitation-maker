@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img">
+  <defs>
+    <radialGradient id="g2-vig" cx="50%" cy="45%" r="78%">
+      <stop offset="0%" stop-color="#f7ecd7"/>
+      <stop offset="78%" stop-color="#f7ecd7"/>
+      <stop offset="100%" stop-color="#e8d7b8"/>
+    </radialGradient>
+    <polygon id="g2-star" points="0,-30 6.5,-9.5 28,-9.5 10,4 17,25 0,12 -17,25 -10,4 -28,-9.5 -6.5,-9.5"/>
+    <g id="g2-flower">
+      <use href="#g2-star" fill="#b49158"/>
+      <use href="#g2-star" transform="rotate(18) scale(0.62)" fill="#8c6b35" fill-opacity="0.55"/>
+      <circle r="3" fill="#4a1520" fill-opacity="0.7"/>
+    </g>
+    <g id="g2-bud">
+      <use href="#g2-star" transform="scale(0.4)" fill="#8c6b35"/>
+      <circle r="1.6" fill="#6b4423"/>
+    </g>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#g2-vig)"/>
+
+  <!-- truntum star-flower field -->
+  <g>
+    <use href="#g2-flower" transform="translate(90,95) rotate(12) scale(0.9)" opacity="0.5"/>
+    <use href="#g2-flower" transform="translate(510,110) rotate(-20) scale(0.8)" opacity="0.45"/>
+    <use href="#g2-flower" transform="translate(105,500) rotate(-8) scale(0.85)" opacity="0.45"/>
+    <use href="#g2-flower" transform="translate(498,488) rotate(24) scale(0.95)" opacity="0.5"/>
+    <use href="#g2-flower" transform="translate(300,70) rotate(30) scale(0.65)" opacity="0.4"/>
+    <use href="#g2-flower" transform="translate(300,530) rotate(-14) scale(0.7)" opacity="0.4"/>
+    <use href="#g2-flower" transform="translate(62,300) rotate(40) scale(0.6)" opacity="0.38"/>
+    <use href="#g2-flower" transform="translate(540,300) rotate(-35) scale(0.6)" opacity="0.38"/>
+    <use href="#g2-bud" transform="translate(190,180)"/>
+    <use href="#g2-bud" transform="translate(420,170) rotate(30)"/>
+    <use href="#g2-bud" transform="translate(165,420) rotate(-25)"/>
+    <use href="#g2-bud" transform="translate(438,410) rotate(15)"/>
+    <use href="#g2-bud" transform="translate(300,205)"/>
+    <use href="#g2-bud" transform="translate(300,395)"/>
+    <use href="#g2-bud" transform="translate(200,300) rotate(45)"/>
+    <use href="#g2-bud" transform="translate(400,300) rotate(-45)"/>
+  </g>
+
+  <!-- gold hairline frame -->
+  <rect x="12" y="12" width="576" height="576" fill="none" stroke="#b49158" stroke-width="1.5"/>
+  <rect x="22" y="22" width="556" height="556" fill="none" stroke="#8c6b35" stroke-width="0.75" stroke-opacity="0.7"/>
+
+  <!-- gold ring focal -->
+  <g>
+    <circle cx="300" cy="300" r="118" fill="#fdf6e3" fill-opacity="0.85"/>
+    <circle cx="300" cy="300" r="118" fill="none" stroke="#b49158" stroke-width="2.5"/>
+    <circle cx="300" cy="300" r="103" fill="none" stroke="#8c6b35" stroke-width="0.75"/>
+    <circle cx="300" cy="300" r="132" fill="none" stroke="#b49158" stroke-width="0.75" stroke-dasharray="2 7"/>
+    <use href="#g2-flower" transform="translate(300,300) scale(1.7)"/>
+    <g fill="#8c6b35">
+      <circle cx="300" cy="168" r="3.5"/>
+      <circle cx="300" cy="432" r="3.5"/>
+      <circle cx="168" cy="300" r="3.5"/>
+      <circle cx="432" cy="300" r="3.5"/>
+      <circle cx="213" cy="213" r="2.5"/>
+      <circle cx="387" cy="213" r="2.5"/>
+      <circle cx="213" cy="387" r="2.5"/>
+      <circle cx="387" cy="387" r="2.5"/>
+    </g>
+  </g>
+</svg>

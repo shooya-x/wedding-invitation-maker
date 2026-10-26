@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img">
+  <defs>
+    <radialGradient id="g4-vig" cx="50%" cy="42%" r="75%">
+      <stop offset="0%" stop-color="#4a1520"/>
+      <stop offset="100%" stop-color="#380f18"/>
+    </radialGradient>
+    <g id="g4-ribbons" transform="rotate(-45 300 300)">
+      <!-- wide diagonal ribbon bands -->
+      <rect x="-80" y="-330" width="760" height="52" fill="#6b4423" fill-opacity="0.55"/>
+      <rect x="-80" y="-330" width="760" height="2" fill="#b49158" fill-opacity="0.55"/>
+      <rect x="-80" y="-278" width="760" height="2" fill="#b49158" fill-opacity="0.35"/>
+      <rect x="-80" y="-118" width="760" height="34" fill="#b49158" fill-opacity="0.14"/>
+      <rect x="-80" y="-118" width="760" height="1.5" fill="#b49158" fill-opacity="0.4"/>
+      <rect x="-80" y="286" width="760" height="52" fill="#6b4423" fill-opacity="0.55"/>
+      <rect x="-80" y="286" width="760" height="2" fill="#b49158" fill-opacity="0.55"/>
+      <rect x="-80" y="338" width="760" height="2" fill="#b49158" fill-opacity="0.35"/>
+      <rect x="-80" y="502" width="760" height="34" fill="#b49158" fill-opacity="0.14"/>
+      <rect x="-80" y="502" width="760" height="1.5" fill="#b49158" fill-opacity="0.4"/>
+      <!-- dashed echo lines -->
+      <rect x="-80" y="-52" width="760" height="1.5" fill="#b49158" fill-opacity="0.3"/>
+      <rect x="-80" y="152" width="760" height="1.5" fill="#b49158" fill-opacity="0.3"/>
+      <!-- parang teeth zigzags -->
+      <path d="M-80,-240 L-56,-254 L-32,-240 L-8,-254 L16,-240 L40,-254 L64,-240 L88,-254 L112,-240 L136,-254 L160,-240 L184,-254 L208,-240 L232,-254 L256,-240 L280,-254 L304,-240 L328,-254 L352,-240 L376,-254 L400,-240 L424,-254 L448,-240 L472,-254 L496,-240 L520,-254 L544,-240 L568,-254 L592,-240 L616,-254 L640,-240 L664,-254 L680,-245" fill="none" stroke="#b49158" stroke-width="1.5" stroke-opacity="0.5"/>
+      <path d="M-80,376 L-56,362 L-32,376 L-8,362 L16,376 L40,362 L64,376 L88,362 L112,376 L136,362 L160,376 L184,362 L208,376 L232,362 L256,376 L280,362 L304,376 L328,362 L352,376 L376,362 L400,376 L424,362 L448,376 L472,362 L496,376 L520,362 L544,376 L568,362 L592,376 L616,362 L640,376 L680,371" fill="none" stroke="#b49158" stroke-width="1.5" stroke-opacity="0.5"/>
+    </g>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#g4-vig)"/>
+  <use href="#g4-ribbons"/>
+
+  <!-- gold hairline frame -->
+  <rect x="12" y="12" width="576" height="576" fill="none" stroke="#b49158" stroke-width="1.5"/>
+  <rect x="22" y="22" width="556" height="556" fill="none" stroke="#8c6b35" stroke-width="0.75" stroke-opacity="0.7"/>
+
+  <!-- gold diamond seal -->
+  <g>
+    <circle cx="300" cy="300" r="150" fill="#380f18" fill-opacity="0.88"/>
+    <path d="M300,185 L415,300 L300,415 L185,300 Z" fill="#380f18" stroke="#b49158" stroke-width="2.5"/>
+    <path d="M300,210 L390,300 L300,390 L210,300 Z" fill="none" stroke="#8c6b35" stroke-width="1"/>
+    <path d="M300,240 L360,300 L300,360 L240,300 Z" fill="none" stroke="#b49158" stroke-width="0.75" stroke-dasharray="3 5"/>
+    <circle cx="300" cy="300" r="6" fill="#b49158"/>
+    <circle cx="300" cy="300" r="118" fill="none" stroke="#8c6b35" stroke-width="0.75" stroke-opacity="0.5"/>
+  </g>
+</svg>

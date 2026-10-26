@@ -1,0 +1,329 @@
+/* ============================================================
+   Pembuat Undangan Pernikahan — panel formulir + pratinjau
+   Palet mengikuti undangan: marun, sogan, krem/gading, emas
+   ============================================================ */
+
+:root {
+  --maroon: #4a1520;
+  --maroon-deep: #380f18;
+  --sogan: #6b4423;
+  --cream: #fdf6e3;
+  --ivory: #f7ecd7;
+  --gold: #b49158;
+  --gold-dark: #8c6b35;
+  --ink: #3d2b1a;
+  --ink-soft: #5a4632;
+  --card: #fffdf6;
+  --danger: #8f1d1d;
+  --shadow: 0 10px 30px rgba(74, 21, 32, 0.12);
+
+  --font-display: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
+  --font-body: "Segoe UI", "Helvetica Neue", "Trebuchet MS", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  color: var(--ink);
+  background-color: var(--cream);
+  /* tekstur halus tanpa berkas eksternal: grid ganda sogan tipis */
+  background-image:
+    repeating-linear-gradient(0deg, rgba(107, 68, 35, 0.045) 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(90deg, rgba(107, 68, 35, 0.045) 0 1px, transparent 1px 56px);
+}
+
+:focus-visible {
+  outline: 3px solid var(--gold-dark);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ---------- Kepala halaman ---------- */
+.topbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 0.5rem;
+  text-align: center;
+}
+
+.topbar__title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--maroon);
+  letter-spacing: 0.03em;
+}
+
+.topbar__title::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 2px;
+  margin: 0.6rem auto 0;
+  background: var(--gold);
+}
+
+.topbar__lead {
+  margin-top: 0.5rem;
+  color: var(--ink-soft);
+}
+
+.col-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--maroon);
+  margin-bottom: 1rem;
+}
+
+/* ---------- Tata letak ---------- */
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 0.5rem;
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+}
+
+.preview-col { min-width: 0; }
+
+/* ---------- Formulir ---------- */
+.form-col {
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.group {
+  border: 1px solid rgba(180, 145, 88, 0.45);
+  border-radius: 14px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.25rem 0.5rem;
+  margin: 0 0 1.25rem;
+}
+
+.group legend {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--maroon);
+  padding: 0 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.field { margin-bottom: 1rem; }
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--sogan);
+  margin-bottom: 0.3rem;
+}
+
+.field label .hint {
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+.field input[type="text"],
+.field input[type="date"],
+.field input[type="time"],
+.field input[type="url"],
+.field textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.55rem 0.75rem;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid rgba(140, 107, 53, 0.4);
+  border-radius: 8px;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.field textarea { min-height: 96px; resize: vertical; }
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--gold-dark);
+  box-shadow: 0 0 0 3px rgba(180, 145, 88, 0.25);
+  outline: none;
+}
+
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(143, 29, 29, 0.15);
+}
+
+.field--check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.6rem 0 0.75rem;
+}
+
+.field--check input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+  accent-color: var(--gold-dark);
+  flex: none;
+}
+
+.field--check label {
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0;
+}
+
+.field__error {
+  margin-top: 0.3rem;
+  font-size: 0.82rem;
+  color: var(--danger);
+}
+
+.field__error[hidden] { display: none; }
+
+/* ---------- Bingkai ponsel pratinjau ---------- */
+.phone {
+  max-width: 430px;
+  margin: 0 auto;
+  background: var(--maroon-deep);
+  border: 10px solid #2b1216;
+  border-radius: 34px;
+  box-shadow: 0 18px 45px rgba(56, 15, 24, 0.35), inset 0 0 0 2px rgba(180, 145, 88, 0.5);
+  overflow: hidden;
+}
+
+.phone iframe {
+  display: block;
+  width: 100%;
+  height: min(78vh, 820px);
+  border: 0;
+  background: var(--cream);
+}
+
+.preview-fold { border: 0; }
+.preview-fold > summary { list-style: none; cursor: default; }
+.preview-fold > summary::-webkit-details-marker { display: none; }
+.preview-fold[open] > summary { margin-bottom: 1rem; }
+
+/* ---------- Bilah aksi ---------- */
+.actions {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.5rem 1.25rem 1.5rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.actions__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.6rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
+}
+
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.btn:active { transform: translateY(0); }
+.btn:disabled { opacity: 0.6; cursor: wait; transform: none; box-shadow: none; }
+
+.btn--gold {
+  background-color: var(--gold);
+  color: var(--maroon-deep);
+  border-color: var(--gold-dark);
+}
+
+.btn--outline {
+  background-color: transparent;
+  color: var(--sogan);
+  border-color: var(--gold-dark);
+}
+
+.btn--ghost {
+  background-color: transparent;
+  color: var(--ink-soft);
+  border-color: rgba(90, 70, 50, 0.35);
+}
+
+.status {
+  min-height: 1.5em;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.status.is-error { color: var(--danger); font-weight: 600; }
+
+/* ---------- Desktop: dua kolom ---------- */
+@media (min-width: 1024px) {
+  .layout { grid-template-columns: 460px minmax(0, 1fr); }
+
+  .form-col { margin: 0; max-width: 480px; }
+
+  .preview-col {
+    position: sticky;
+    top: 1.5rem;
+    text-align: center;
+  }
+
+  /* di desktop lipatan selalu terbuka; ringkasannya disembunyikan */
+  .preview-fold > summary { display: none; }
+  .preview-fold { display: block; }
+}
+
+/* ---------- Seluler: bilah aksi menempel di bawah ---------- */
+@media (max-width: 1023.98px) {
+  .actions {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: var(--card);
+    border-top: 1px solid rgba(180, 145, 88, 0.45);
+    box-shadow: 0 -6px 20px rgba(74, 21, 32, 0.12);
+    padding: 0.6rem 1rem;
+  }
+
+  .status { text-align: left; }
+
+  .actions__buttons { justify-content: flex-start; }
+  .actions__buttons .btn { flex: 1 1 auto; padding-inline: 1rem; }
+
+  body { padding-bottom: 140px; }
+}
+
+/* ---------- Gerak dikurangi ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
