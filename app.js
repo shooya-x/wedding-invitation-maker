@@ -303,7 +303,13 @@
     input.addEventListener('input', perbaruiPratinjauDebounce);
     input.addEventListener('change', perbaruiPratinjauDebounce);
   });
-  btnPreview.addEventListener('click', perbaruiPratinjau);
+  // Di ponsel pratinjau ada di bawah formulir; tombol ini membawanya ke layar.
+  btnPreview.addEventListener('click', function () {
+    perbaruiPratinjau();
+    if (!window.matchMedia('(min-width: 1024px)').matches) {
+      preview.scrollIntoView({ block: 'start' });
+    }
+  });
 
   /* ---------- Musik latar (dimuat hanya saat diunduh) ---------- */
 
@@ -398,25 +404,6 @@
     perbaruiPratinjau();
     setStatus('Formulir dikosongkan.');
   });
-
-  /* ---------- Pratinjau di ponsel: lipat tertutup, di desktop terbuka ---------- */
-
-  var detail = $('preview-details');
-
-  function sinkronLipatan() {
-    if (window.matchMedia('(min-width: 1024px)').matches) {
-      detail.open = true;
-    } else {
-      detail.open = false;
-    }
-  }
-  var mediaDesktop = window.matchMedia('(min-width: 1024px)');
-  if (mediaDesktop.addEventListener) {
-    mediaDesktop.addEventListener('change', sinkronLipatan);
-  } else if (mediaDesktop.addListener) {
-    mediaDesktop.addListener(sinkronLipatan);
-  }
-  sinkronLipatan();
 
   /* ---------- Mulai: draf atau contoh ---------- */
 
