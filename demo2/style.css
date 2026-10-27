@@ -1,0 +1,764 @@
+/* ============================================================
+   Undangan Pernikahan — Surya & Fransiska (demo2)
+   Tema: Floral Elegan — gading hangat, blush & rose, sage, emas lembut
+   ============================================================ */
+
+:root {
+  --ivory: #fdfaf5;
+  --card: #fffdf9;
+  --blush: #e8cfc9;
+  --blush-soft: #f7ece9;
+  --rose: #8d4a52;
+  --rose-deep: #6f3c42;
+  --rose-line: #c2939a;
+  --sage: #7c8b6f;
+  --gold: #b08d57;
+  --gold-soft: rgba(176, 141, 87, 0.55);
+  --ink: #35322e;
+  --ink-soft: #6b645c;
+
+  --font-display: Georgia, "Palatino Linotype", Palatino, "Book Antiqua", "Times New Roman", serif;
+  --font-body: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --speed: 320ms;
+  --shadow: 0 8px 28px rgba(141, 74, 82, 0.1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink);
+  background:
+    radial-gradient(130% 80% at 50% 0%, var(--blush-soft) 0%, rgba(247, 236, 233, 0) 60%),
+    var(--ivory);
+}
+
+/* Gembok gulir saat cover terbuka */
+body.cover-open { overflow: hidden; }
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Fokus ---------- */
+:focus-visible {
+  outline: 2px solid var(--rose);
+  outline-offset: 3px;
+}
+
+/* ---------- Tipografi dasar ---------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--rose-deep);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.wrap {
+  max-width: 40rem;
+  margin-inline: auto;
+  padding: 3rem 1.25rem 3.5rem;
+  text-align: center;
+}
+
+.section__num {
+  font-size: 0.72rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 0.5rem;
+}
+
+.section__title {
+  font-size: clamp(1.8rem, 5.5vw, 2.5rem);
+}
+
+/* Pembatas floral antar bagian */
+.orn {
+  width: min(240px, 68%);
+  height: 32px;
+  margin: 0.9rem auto 1.75rem;
+  background: url("assets/divider.svg") no-repeat center / contain;
+}
+
+.lead {
+  margin-bottom: 1.75rem;
+  color: var(--ink-soft);
+}
+
+.lead--count {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--rose-deep);
+}
+
+/* ---------- Kartu lembut ---------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--gold-soft);
+  border-radius: 18px;
+  padding: 2rem 1.5rem;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+/* Ornamen sudut pada kartu tertentu */
+.card--orn::before,
+.card--orn::after {
+  content: "";
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  background: url("assets/corner.svg") no-repeat center / contain;
+  pointer-events: none;
+}
+
+.card--orn::before { top: 9px; left: 9px; }
+
+.card--orn::after {
+  bottom: 9px; right: 9px;
+  transform: rotate(180deg);
+}
+
+/* ---------- Tombol: pil lembut ---------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.9rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--speed) ease, color var(--speed) ease, border-color var(--speed) ease, transform var(--speed) ease;
+}
+
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+
+.btn--gold {
+  background-color: var(--rose);
+  color: var(--ivory);
+  border-color: var(--rose);
+  box-shadow: 0 4px 14px rgba(141, 74, 82, 0.22);
+}
+
+.btn--gold:hover { background-color: var(--rose-deep); border-color: var(--rose-deep); }
+
+.btn--outline {
+  background-color: transparent;
+  color: var(--rose-deep);
+  border-color: var(--gold);
+}
+
+.btn--outline:hover { background-color: rgba(232, 207, 201, 0.35); border-color: var(--rose); color: var(--rose); }
+
+/* ============================================================
+   1. Cover / layar pembuka — kartu undangan dengan karangan
+   ============================================================ */
+.cover {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background:
+    radial-gradient(120% 90% at 50% 20%, var(--blush-soft) 0%, rgba(247, 236, 233, 0) 65%),
+    var(--ivory);
+  transition: opacity 480ms ease, visibility 480ms ease;
+}
+
+.cover.is-open {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cover__card {
+  width: min(100%, 380px);
+  text-align: center;
+  background: var(--card);
+  border: 1px solid var(--gold);
+  border-radius: 20px;
+  padding: 2.25rem 1.5rem 2.5rem;
+  box-shadow:
+    0 0 0 6px var(--card),
+    0 0 0 7px var(--gold-soft),
+    var(--shadow);
+}
+
+.cover__eyebrow {
+  font-size: 0.74rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 0.5rem;
+}
+
+/* Karangan melingkar mengelilingi nama mempelai */
+.cover__wreath {
+  position: relative;
+  width: min(100%, 300px);
+  margin: 0 auto 1rem;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cover__wreath img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cover__names {
+  position: relative;
+  font-size: clamp(1.7rem, 8vw, 2.1rem);
+  padding: 0 2.25rem;
+}
+
+.cover__names .amp {
+  font-style: italic;
+  color: var(--rose);
+  font-size: 0.72em;
+  padding: 0 0.1em;
+}
+
+.cover__date {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--rose-deep);
+  margin-bottom: 0.5rem;
+}
+
+.cover__hint {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin-bottom: 1.5rem;
+}
+
+/* ---------- Header kecil ---------- */
+.site-header {
+  text-align: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(176, 141, 87, 0.3);
+  background: var(--card);
+}
+
+.site-header__brand {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.2em;
+  color: var(--rose-deep);
+}
+
+/* ============================================================
+   2. Hero
+   ============================================================ */
+.hero__monogram {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(2.2rem, 7vw, 2.9rem);
+  line-height: 1;
+  color: var(--rose);
+  margin-bottom: 1.5rem;
+}
+
+.hero__heart {
+  font-size: 0.42em;
+  padding: 0 0.5em;
+  vertical-align: 0.3em;
+}
+
+.hero__names {
+  font-size: clamp(2.1rem, 7vw, 3.1rem);
+  margin-bottom: 0.75rem;
+}
+
+.hero__date {
+  font-size: 0.82rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+  margin-bottom: 0.5rem;
+}
+
+.scroll-cue {
+  display: inline-block;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-decoration: none;
+  animation: bob 2.4s ease-in-out infinite;
+}
+
+.scroll-cue:hover { color: var(--rose); }
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+/* ---------- Seksi umum ---------- */
+.section { padding: 0; }
+
+/* ============================================================
+   3. Countdown — angka dalam kartu tipis
+   ============================================================ */
+.card--countdown {
+  background: var(--blush-soft);
+  padding: 1.5rem 1rem;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.countdown__box {
+  background: var(--card);
+  border: 1px solid rgba(176, 141, 87, 0.35);
+  border-radius: 12px;
+  padding: 0.8rem 0.25rem 0.7rem;
+  min-width: 0;
+}
+
+.countdown__num {
+  display: block;
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  font-size: clamp(1.5rem, 5.5vw, 2.1rem);
+  line-height: 1.1;
+  color: var(--rose-deep);
+  min-width: 2ch;
+}
+
+.countdown__label {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ============================================================
+   4. Mempelai — kutipan & kartu monogram berbingkai
+   ============================================================ */
+.quote {
+  margin: 0 auto 2rem;
+  max-width: 30rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.quote p { line-height: 1.75; }
+
+.quote cite {
+  display: block;
+  margin-top: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-style: normal;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+}
+
+.couple { margin-bottom: 1.5rem; }
+.couple:last-child { margin-bottom: 0; }
+
+.couple__badge {
+  width: 58px; height: 58px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.7rem;
+  color: var(--rose);
+  background: var(--blush-soft);
+  border: 1px solid var(--gold);
+  box-shadow: inset 0 0 0 3px var(--card), inset 0 0 0 4px rgba(176, 141, 87, 0.45);
+}
+
+.couple__name { font-size: clamp(1.4rem, 4.5vw, 1.8rem); margin-bottom: 0.2rem; }
+
+.couple__role {
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 0.6rem;
+}
+
+.couple__parents { color: var(--ink-soft); font-size: 0.95rem; }
+
+/* ============================================================
+   5. Acara
+   ============================================================ */
+.event { margin-bottom: 1.5rem; }
+.event:last-child { margin-bottom: 0; }
+
+.event__title {
+  font-size: clamp(1.35rem, 4vw, 1.7rem);
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid rgba(176, 141, 87, 0.35);
+}
+
+.event__row {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.event__icon { margin-right: 0.4rem; }
+
+.event .btn { margin-top: 1.1rem; }
+
+/* ============================================================
+   6. Galeri — bingkai arch dengan ornamen sudut
+   ============================================================ */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.4rem 1.1rem;
+}
+
+.gallery__item {
+  position: relative;
+  min-width: 0;
+}
+
+.gallery__tile {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: var(--card);
+  border: 1px solid var(--gold);
+  border-radius: 50% 50% 10px 10px / 58% 58% 10px 10px;
+  box-shadow: var(--shadow);
+}
+
+/* Ornamen bingkai galeri: satu sprig di celah sudut atas-kiri arch.
+   Offset positif (di dalam sel) agar tidak masuk gutter antar-kolom;
+   tersembunyi di layar kecil agar caption tidak tertimpa. */
+.gallery__item::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 34px;
+  height: 34px;
+  background: url("assets/corner.svg") no-repeat center / contain;
+  pointer-events: none;
+  display: none;
+}
+
+@media (min-width: 480px) {
+  .gallery__item::before { display: block; }
+}
+
+.gallery__caption {
+  max-width: 100%;
+  margin-top: 0.55rem;
+  padding: 0 0.35rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  overflow-wrap: break-word;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+}
+
+/* ============================================================
+   7. Ucapan &amp; RSVP
+   ============================================================ */
+.rsvp-form { text-align: left; }
+
+.field { margin-bottom: 1.25rem; }
+
+.field label,
+.field legend {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 0.45rem;
+  color: var(--rose-deep);
+}
+
+.field input[type="text"],
+.field textarea {
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  background: var(--ivory);
+  border: 1px solid rgba(176, 141, 87, 0.45);
+  border-radius: 10px;
+  padding: 0.65rem 0.9rem;
+  resize: vertical;
+}
+
+.field input[type="text"]:focus,
+.field textarea:focus { border-color: var(--rose); }
+
+.field--radio { border: 0; }
+
+.radio-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.radio input { accent-color: var(--rose); width: 1.05rem; height: 1.05rem; }
+
+.field__error {
+  margin-top: 0.45rem;
+  font-size: 0.85rem;
+  color: #9c3f39;
+  font-weight: 600;
+}
+
+.rsvp-form .btn { width: 100%; }
+
+/* Daftar ucapan — kartu blush lembut */
+.rsvp-list {
+  list-style: none;
+  margin: 2rem auto 0;
+  max-width: 30rem;
+  text-align: left;
+}
+
+.rsvp-item {
+  background: rgba(232, 207, 201, 0.28);
+  border: 1px solid rgba(176, 141, 87, 0.3);
+  border-radius: 14px;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.rsvp-item__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.rsvp-item__name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--rose-deep);
+}
+
+.rsvp-item__badge {
+  flex-shrink: 0;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.18rem 0.6rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  color: var(--rose-deep);
+  background: var(--card);
+}
+
+.badge--hadir { color: #46604a; }
+.badge--tidak-hadir { color: #9c3f39; }
+.badge--masih-ragu { color: #8a6a33; }
+
+.rsvp-item__msg { color: var(--ink-soft); font-size: 0.95rem; }
+
+.rsvp-item__time {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+}
+
+/* ============================================================
+   8. Amplop digital
+   ============================================================ */
+.bank__bank {
+  font-size: 0.74rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 0.4rem;
+}
+
+.bank__number {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(1.8rem, 6vw, 2.4rem);
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+
+.bank__name {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ============================================================
+   9. Penutup &amp; footer
+   ============================================================ */
+.closing .lead {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+}
+
+.closing__names {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin-top: 1.5rem;
+}
+
+.closing__names strong {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 6vw, 2.4rem);
+  color: var(--rose);
+  margin-top: 0.35rem;
+}
+
+.closing__hashtag {
+  margin-top: 1.25rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+  margin-bottom: 0.5rem;
+}
+
+.closing__sprig {
+  display: block;
+  margin: 0 auto;
+}
+
+.site-footer {
+  text-align: center;
+  border-top: 1px solid rgba(176, 141, 87, 0.3);
+  background: var(--card);
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  padding: 1.1rem 1.25rem;
+}
+
+/* Beri ruang agar teks footer tidak tertimpa tombol musik di ponsel */
+@media (max-width: 480px) {
+  .site-footer {
+    padding-bottom: calc(1.1rem + 58px);
+    padding-inline-end: 52px;
+  }
+}
+
+/* ---------- Tombol musik mengambang ---------- */
+.music-toggle {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 60;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--rose);
+  background: var(--card);
+  border: 1px solid var(--rose);
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: background-color var(--speed) ease, color var(--speed) ease;
+}
+
+.music-toggle:hover { background: var(--rose); color: var(--ivory); }
+
+.music-toggle[hidden] { display: none; }
+
+.music-toggle.is-muted::after {
+  content: "";
+  position: absolute;
+  width: 26px;
+  height: 1.5px;
+  background: currentColor;
+  transform: rotate(-45deg);
+}
+
+/* ============================================================
+   Scroll reveal &amp; reduced motion
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 380ms ease-out, transform 380ms ease-out;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .scroll-cue { animation: none; }
+  .btn, .music-toggle { transition: none; }
+  .cover { transition: none; }
+}
+
+/* ---------- Desktop ---------- */
+@media (min-width: 768px) {
+  .wrap { padding: 3.5rem 2rem 4rem; }
+  .card { padding: 2.25rem 2.25rem; }
+  .gallery { gap: 1.75rem 1.4rem; }
+  .rsvp-form { padding: 2.5rem; }
+}

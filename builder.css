@@ -152,6 +152,40 @@ body {
 
 .field textarea { min-height: 96px; resize: vertical; }
 
+.field input[type="file"] {
+  width: 100%;
+  padding: 0.7rem 0.75rem;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  background: #fff;
+  border: 1px dashed rgba(140, 107, 53, 0.55);
+  border-radius: 8px;
+}
+
+.field > .hint {
+  margin: 0.35rem 0 0;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+.foto-pratinjau {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.7rem;
+}
+
+.foto-pratinjau[hidden] { display: none; }
+
+.foto-pratinjau img {
+  width: 64px;
+  height: 85px;
+  object-fit: cover;
+  border: 1px solid var(--gold-dark);
+  border-radius: 6px;
+}
+
 .field input:focus,
 .field textarea:focus {
   border-color: var(--gold-dark);

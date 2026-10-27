@@ -72,6 +72,11 @@
   var btnContoh = $('btn-contoh');
   var musik = $('musik');
   var form = $('builder-form');
+  var fotoInput = $('foto');
+  var fotoThumb = $('foto-thumb');
+  var fotoPratinjau = $('foto-pratinjau');
+  var fotoHapus = $('foto-hapus');
+  var fotoData = '';
 
   /* ---------- Util kecil ---------- */
 
@@ -117,6 +122,26 @@
     var b = (wanita || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
     var slug = [a, b].filter(Boolean).join('-');
     return slug || 'undangan';
+  }
+
+  /* Foto dikecilkan ke maks 1200 px lalu disimpan sebagai JPEG di dalam HTML. */
+  function siapkanFoto(file, selesai) {
+    var url = URL.createObjectURL(file);
+    var img = new Image();
+    img.onload = function () {
+      var skala = Math.min(1, 1200 / Math.max(img.width, img.height));
+      var kanvas = document.createElement('canvas');
+      kanvas.width = Math.round(img.width * skala);
+      kanvas.height = Math.round(img.height * skala);
+      kanvas.getContext('2d').drawImage(img, 0, 0, kanvas.width, kanvas.height);
+      URL.revokeObjectURL(url);
+      selesai(kanvas.toDataURL('image/jpeg', 0.82));
+    };
+    img.onerror = function () {
+      URL.revokeObjectURL(url);
+      selesai('');
+    };
+    img.src = url;
   }
 
   /* ---------- Penyimpanan draf ---------- */
@@ -279,6 +304,19 @@
         ' \u2014 ' + tanggalPanjang + ', ' + v.lokasi.trim() + '.');
     }
 
+    if (fotoData) {
+      var bingkai = doc.querySelector('.hero__photo');
+      if (bingkai) {
+        var monogram = bingkai.querySelector('.hero__monogram');
+        if (monogram) monogram.parentNode.removeChild(monogram);
+        var foto = doc.createElement('img');
+        foto.className = 'hero__photo-img';
+        foto.src = fotoData;
+        foto.alt = 'Foto ' + priaLengkap + ' & ' + wanitaLengkap;
+        bingkai.appendChild(foto);
+      }
+    }
+
     return { html: '<!DOCTYPE html>\n' + doc.documentElement.outerHTML };
   }
 
@@ -309,6 +347,45 @@
     if (!window.matchMedia('(min-width: 1024px)').matches) {
       preview.scrollIntoView({ block: 'start' });
     }
+  });
+
+  /* ---------- Foto (opsional) ---------- */
+
+  function bersihkanFoto() {
+    fotoData = '';
+    fotoThumb.removeAttribute('src');
+    fotoPratinjau.hidden = true;
+    fotoInput.value = '';
+  }
+
+  fotoInput.addEventListener('change', function () {
+    var file = fotoInput.files && fotoInput.files[0];
+    if (!file) return;
+    if (!/^image\//.test(file.type)) {
+      setStatus('Berkas yang dipilih bukan gambar.', true);
+      fotoInput.value = '';
+      return;
+    }
+    setStatus('Menyiapkan foto\u2026');
+    siapkanFoto(file, function (uri) {
+      fotoData = uri;
+      if (uri) {
+        fotoThumb.src = uri;
+        fotoPratinjau.hidden = false;
+      } else {
+        bersihkanFoto();
+      }
+      perbaruiPratinjau();
+      setStatus(uri
+        ? 'Foto dipakai di undangan. Tekan "Buka Undangan" di pratinjau untuk melihatnya.'
+        : 'Foto gagal dibaca. Undangan tetap dibuat tanpa foto.', !uri);
+    });
+  });
+
+  fotoHapus.addEventListener('click', function () {
+    bersihkanFoto();
+    perbaruiPratinjau();
+    setStatus('Foto dilepas. Undangan kembali memakai ornamen bawaan.');
   });
 
   /* ---------- Musik latar (dimuat hanya saat diunduh) ---------- */
@@ -401,6 +478,7 @@
       /* biarkan: penghapusan draf tidak wajib berhasil */
     }
     isiFormulir(DEFAULTS);
+    bersihkanFoto();
     perbaruiPratinjau();
     setStatus('Formulir dikosongkan.');
   });

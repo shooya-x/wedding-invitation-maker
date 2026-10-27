@@ -4,6 +4,7 @@ Situs statis: form untuk mengisi data calon pengantin, lalu mengunduh undangan j
 
 - `/` (index.html) — form + pratinjau
 - `/demo/` — contoh undangan hasilnya (juga jadi sumber template)
+- `/demo2/` — contoh tema kedua (editorial minimal); berdiri sendiri, bukan sumber template
 
 ## Pakai
 
@@ -13,6 +14,8 @@ Situs statis: form untuk mengisi data calon pengantin, lalu mengunduh undangan j
 4. Unggah file itu ke hosting apa pun. Semua CSS, JS, motif batik, dan galeri sudah di dalamnya.
 
 Isian tersimpan otomatis sebagai draf di browser yang sama. Musik latar boleh dilepas kalau ingin file kecil (≈75 KB); dengan musik file jadi ≈5,6 MB karena lagu ikut ditanam di dalam file.
+
+Foto pasangan bersifat opsional. Kalau diunggah, foto dikecilkan dulu ke maksimal 1200 px (JPEG) lalu ditanam di dalam HTML; kalau tidak diunggah, undangan memakai bingkai ornamen seperti biasa. Foto tidak ikut tersimpan di draf, jadi perlu dipilih ulang setelah halaman dimuat ulang.
 
 Untuk memberi tamu link, unggah file hasilnya ke folder repo, mis. `undangan/surya-fransiska.html`, lalu bagikan `https://username.github.io/nama-repo/undangan/surya-fransiska.html`.
 

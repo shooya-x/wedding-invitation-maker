@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 36" fill="none" stroke-linecap="round">
+  <defs>
+    <path id="dl" d="M0 0 C -3 -5 -3 -10.5 0 -15.5 C 3 -10.5 3 -5 0 0 Z"/>
+  </defs>
+  <g stroke="#b08d57" stroke-width="1.2">
+    <line x1="12" y1="18" x2="126" y2="18"/>
+    <line x1="194" y1="18" x2="308" y2="18"/>
+  </g>
+  <g stroke="#c2939a" stroke-width="1.4">
+    <g transform="translate(160 18)">
+      <ellipse rx="3.2" ry="6.2" cy="-6.5"/>
+      <ellipse rx="3.2" ry="6.2" cy="-6.5" transform="rotate(72)"/>
+      <ellipse rx="3.2" ry="6.2" cy="-6.5" transform="rotate(144)"/>
+      <ellipse rx="3.2" ry="6.2" cy="-6.5" transform="rotate(216)"/>
+      <ellipse rx="3.2" ry="6.2" cy="-6.5" transform="rotate(288)"/>
+      <circle r="2.4" fill="#fdfaf5"/>
+    </g>
+  </g>
+  <g stroke="#7c8b6f" stroke-width="1.4">
+    <use href="#dl" transform="translate(144 18) rotate(-90) scale(0.7)"/>
+    <use href="#dl" transform="translate(176 18) rotate(90) scale(0.7)"/>
+    <use href="#dl" transform="translate(134 18) rotate(-120) scale(0.5)"/>
+    <use href="#dl" transform="translate(186 18) rotate(120) scale(0.5)"/>
+  </g>
+</svg>
